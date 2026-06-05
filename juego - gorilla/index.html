@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Juego de Gorilas</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="js/index.js" defer></script>
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+
+    <svg width="200" height="250" id="windmill" aria-hidden="true">
+      <defs>
+        <path id="arm" d="M -7 -20 C -7 -10 7 -10 7 -20 L 2 -80 L -2 -80" />
+      </defs>
+      <g transform="translate(100, 100)">
+        <g id="windmill-head">
+          <circle r="8"></circle>
+          <use href="#arm" />
+          <use href="#arm" transform="rotate(+120)" />
+          <use href="#arm" transform="rotate(-120)" />
+        </g>
+      </g>
+      <path
+        transform="translate(100, 0)"
+        d="M -7 250 L 7 250 L 3 115 L -3 115"
+      ></path>
+    </svg>
+
+    <div id="wind-info"><span id="wind-label">Viento</span>: <span id="wind-speed">0</span></div>
+
+    <div id="info-left">
+      <h3><span class="name">Jugador</span></h3>
+      <p><span class="angle-label">Angulo</span>: <span class="angle">0</span>&deg;</p>
+      <p><span class="velocity-label">Fuerza</span>: <span class="velocity">0</span></p>
+    </div>
+
+    <div id="info-right">
+      <h3><span class="name">Computadora</span></h3>
+      <p><span class="angle-label">Angulo</span>: <span class="angle">0</span>&deg;</p>
+      <p><span class="velocity-label">Fuerza</span>: <span class="velocity">0</span></p>
+    </div>
+
+    <div id="instructions">
+      <h3 id="game-mode">Jugador vs. Computadora</h3>
+      <h1 id="instruction-title">Arrastra la banana para apuntar</h1>
+    </div>
+
+    <section id="message-panel" aria-live="polite">
+      <div class="panel-heading">
+        <span id="panel-title">Actividad</span>
+        <strong id="turn-message">Preparando partida</strong>
+      </div>
+      <div id="player-list">
+        <span id="panel-player-one">Jugador: -</span>
+        <span id="panel-player-two">Rival: -</span>
+      </div>
+      <ol id="activity-log"></ol>
+    </section>
+
+    <div id="bomb-grab-area"></div>
+
+    <div id="congratulations">
+      <h1><span id="winner-prefix">Gano</span></h1>
+      <div id="winner">?</div>
+      <p id="winner-note">Nueva ronda, nuevo estilo.</p>
+      <div class="dropdown">
+        <button class="dropbtn new-game-label">Nuevo juego</button>
+        <div class="dropdown-content">
+          <a href="#" class="single-player">Un jugador</a>
+          <a href="#" class="two-players">Dos jugadores</a>
+          <a href="#" class="auto-play">Automatico</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="settings">
+      <div class="dropdown">
+        <button class="dropbtn new-game-label">Nuevo juego</button>
+        <div class="dropdown-content">
+          <a href="#" class="single-player">Un jugador</a>
+          <a href="#" class="two-players">Dos jugadores</a>
+          <a href="#" class="auto-play">Automatico</a>
+        </div>
+      </div>
+
+      <button id="color-mode">Tema</button>
+      <button id="music-toggle">Musica</button>
+      <select id="language-select" aria-label="Idioma">
+        <option value="es">Espanol</option>
+        <option value="en">English</option>
+        <option value="fr">Francais</option>
+        <option value="pt">Portugues</option>
+        <option value="de">Deutsch</option>
+        <option value="it">Italiano</option>
+      </select>
+    </div>
+
+    <button id="fullscreen" onclick="toggleFullscreen()" aria-label="Pantalla completa">
+      <svg width="30" height="30" aria-hidden="true">
+        <path
+          id="enter-fullscreen"
+          stroke="white"
+          stroke-width="3"
+          fill="none"
+          d="
+            M 10, 2 L 2,2 L 2, 10
+            M 20, 2 L 28,2 L 28, 10
+            M 28, 20 L 28,28 L 20, 28
+            M 10, 28 L 2,28 L 2, 20"
+        />
+        <path
+          id="exit-fullscreen"
+          stroke="transparent"
+          stroke-width="3"
+          fill="none"
+          d="
+            M 10, 2 L 10,10 L 2, 10
+            M 20, 2 L 20,10 L 28, 10
+            M 28, 20 L 20,20 L 20, 28
+            M 10, 28 L 10,20 L 2, 20"
+        />
+      </svg>
+    </button>
+  </body>
+</html>
